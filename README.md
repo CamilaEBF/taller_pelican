@@ -1,11 +1,23 @@
+#Dockerfile
 
+```
+FROM python:3.9.5-alpine
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+
+EXPOSE 8000
+```
 # Build the image
 
-docker build -t pelicanblog .
+    docker build -t pelicanblog .
 
 # Run the container
 
- docker run -it --name pelicanblog --rm --volume ${PWD}:/usr/src/app --net=host pelicanblog:latest sh
+     docker run -it --name pelicanblog --rm --volume ${PWD}:/usr/src/app -p 8080:8000 pelicanblog:latest sh
 
  # Kickstart your site!
 
@@ -37,3 +49,13 @@ Console output:
     > Do you want to upload your website using GitHub Pages? (y/N)
     Done. Your new project is available at /usr/src/app
 
+Next:
+    /usr/src/app # pelican content
+
+# Run the server
+
+pelican --listen -b 0.0.0.0
+
+# Now you can access it from your web browser
+
+http://localhost:8080/

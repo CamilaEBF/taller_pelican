@@ -11,15 +11,15 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8000
 ```
-# Build the image
+# Build the image // Crear la imagen
 
     docker build -t pelicanblog .
 
-# Run the container
+# Run the container // Ejecutar el container
 
      docker run -it --name pelicanblog --rm --volume ${PWD}:/usr/src/app -p 8080:8000 pelicanblog:latest sh
 
- # Kickstart your site!
+# Kickstart your site! // Iniciá el sitio!
 
 Console output:
 
@@ -52,10 +52,10 @@ Console output:
 Next:
     /usr/src/app # pelican content
 
-# Run the server
+# Run the server // Iniciá el servidor
 
 pelican --listen -b 0.0.0.0
 
-# Now you can access it from your web browser
+# Now you can access it from your web browser // Ahora puedes acceder desde tu navegador
 
 http://localhost:8080/

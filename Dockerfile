@@ -5,6 +5,10 @@ WORKDIR /usr/src/app
 COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
+
+#Git 
 RUN apk add git
 
 EXPOSE 8000
+
+

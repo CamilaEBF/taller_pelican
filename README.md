@@ -2,24 +2,13 @@
 
 ```
 FROM python:3.9.5-alpine
-ARG GIT_USER_NAME
-ARG GIT_USER_EMAIL
-ARG GIT_TOKEN
-
 
 WORKDIR /usr/src/app
 
 COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
-
-#Git access commands 
-#WARNING! NOT SECURE
 RUN apt-get -y install git
-RUN git config --global user.name ${GIT_USER_NAME}
-RUN git config --global user.email ${GIT_USER_EMAIL}
-RUN git config --global user.password ${GIT_USER_TOKEN}
-RUN git config credential.helper store
 
 EXPOSE 8000
 ```

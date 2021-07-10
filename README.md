@@ -2,6 +2,10 @@
 
 ```
 FROM python:3.9.5-alpine
+ARG GIT_USER_NAME
+ARG GIT_USER_EMAIL
+ARG GIT_TOKEN
+
 
 WORKDIR /usr/src/app
 
@@ -9,15 +13,23 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
+#Git access commands 
+#WARNING! NOT SECURE
+RUN apt-get -y install git
+RUN git config --global user.name ${GIT_USER_NAME}
+RUN git config --global user.email ${GIT_USER_EMAIL}
+RUN git config --global user.password ${GIT_USER_TOKEN}
+RUN git config credential.helper store
+
 EXPOSE 8000
 ```
 # Build the image // Crear la imagen
 
-    docker build -t pelicanblog .
+    docker build -t --build-arg GIT_USER_NAME=<your_user> GIT_USER_EMAIL=<your_email> GIT_TOKEN=<your_github_access_token> pelicandevenv .
 
 # Run the container // Ejecutar el container
 
-     docker run -it --name pelicanblog --rm --volume ${PWD}:/usr/src/app -p 8080:8000 pelicanblog:latest sh
+     docker run -it --name pelicanblog --rm --volume ${PWD}:/usr/src/app -p 8080:8000 pelicandevenv:latest sh
 
 # Kickstart your site! // Iniciá el sitio!
 

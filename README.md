@@ -14,7 +14,7 @@ EXPOSE 8000
 ```
 # Build the image // Crear la imagen
 
-    docker build -t --build-arg GIT_USER_NAME=<your_user> GIT_USER_EMAIL=<your_email> GIT_TOKEN=<your_github_access_token> pelicandevenv .
+    docker build -t pelicandevenv .
 
 # Run the container // Ejecutar el container
 
